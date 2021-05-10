@@ -1,0 +1,23 @@
+#need to use version 2 cause some commands are depreciate in v3
+version: "2"
+
+#website:the end user interface
+
+services: 
+    web:
+        image: php:apache
+        environment:
+            USERNAME: toto
+            PASSWORD: python
+        volumes:
+            - ./website:/var/www/html/
+        depends_on:
+            - api
+        ports:
+            - 90:80
+#the simple_api
+    api:
+        build: simple_api/
+        image: simple-api
+        ports:
+            - 5000:5000
